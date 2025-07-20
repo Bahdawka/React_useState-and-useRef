@@ -12,6 +12,7 @@ const ControlledForm = () => {
   const username = useInput('')
   const password = useInput('')
 
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log({
