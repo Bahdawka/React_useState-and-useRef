@@ -1,12 +1,27 @@
-import { type FormEvent, useState } from 'react'
+import { type ChangeEvent, type FormEvent, useState } from 'react'
+
+interface FormData {
+  username: string
+  password: string
+}
+
+const initialFormData: FormData = {
+  username: '',
+  password: ''
+}
 
 const ControlledForm = () => {
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [formData, setFormData] = useState<FormData>(initialFormData)
+
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log({ username, password })
+    console.log(formData)
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({ ...prevData, [name]: value }))
   }
 
   return (
@@ -16,10 +31,11 @@ const ControlledForm = () => {
           Username
         </label>
         <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={formData.username}
+          onChange={handleChange}
           type="text"
           className="form-control"
+          name="username"
           id="username"
           placeholder="Enter your username" />
       </div>
@@ -28,10 +44,11 @@ const ControlledForm = () => {
           Password
         </label>
         <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleChange}
           type="password"
           className="form-control"
+          name="password"
           id="password"
           placeholder="Enter your password" />
       </div>
