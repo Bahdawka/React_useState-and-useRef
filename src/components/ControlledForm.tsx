@@ -1,27 +1,23 @@
 import { type ChangeEvent, type FormEvent, useState } from 'react'
 
-interface FormData {
-  username: string
-  password: string
-}
-
-const initialFormData: FormData = {
-  username: '',
-  password: ''
+const useInput = (initialValue: string) => {
+  const [value, setValue] = useState(initialValue)
+  return {
+    value,
+    onChange: (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)
+  }
 }
 
 const ControlledForm = () => {
-  const [formData, setFormData] = useState<FormData>(initialFormData)
-
+  const username = useInput('')
+  const password = useInput('')
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
-  }
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prevData) => ({ ...prevData, [name]: value }))
+    console.log({
+      username: username.value,
+      password: password.value
+    })
   }
 
   return (
@@ -31,26 +27,26 @@ const ControlledForm = () => {
           Username
         </label>
         <input
-          value={formData.username}
-          onChange={handleChange}
           type="text"
           className="form-control"
           name="username"
           id="username"
-          placeholder="Enter your username" />
+          placeholder="Enter your username"
+          {...username}
+        />
       </div>
       <div className="mb-3">
         <label htmlFor="password" className="form-label">
           Password
         </label>
         <input
-          value={formData.password}
-          onChange={handleChange}
           type="password"
           className="form-control"
           name="password"
           id="password"
-          placeholder="Enter your password" />
+          placeholder="Enter your password"
+          {...password}
+        />
       </div>
       <button type="submit" className="btn btn-primary">
         Login
