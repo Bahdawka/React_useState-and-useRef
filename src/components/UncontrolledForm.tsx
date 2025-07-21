@@ -22,7 +22,7 @@ const UncontrolledForm = () => {
           ref={usernameRef}
           type="text"
           className="form-control"
-          id="username"
+          id="username2"
           placeholder="Enter your username" />
       </div>
       <div className="mb-3">
@@ -33,7 +33,7 @@ const UncontrolledForm = () => {
           ref={passwordRef}
           type="password"
           className="form-control"
-          id="password"
+          id="password2"
           placeholder="Enter your password" />
       </div>
       <button type="submit" className="btn btn-danger">

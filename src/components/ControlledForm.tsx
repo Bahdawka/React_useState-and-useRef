@@ -31,8 +31,9 @@ const ControlledForm = () => {
           type="text"
           className="form-control"
           name="username"
-          id="username"
+          id="username1"
           placeholder="Enter your username"
+          autoComplete='off'
           {...username}
         />
       </div>
@@ -44,8 +45,9 @@ const ControlledForm = () => {
           type="password"
           className="form-control"
           name="password"
-          id="password"
+          id="password1"
           placeholder="Enter your password"
+          autoComplete='off'
           {...password}
         />
       </div>
